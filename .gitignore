@@ -34,7 +34,6 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-bin*
 reports*
 target*
 .classpath
@@ -56,3 +55,4 @@ vf.*
 locator*
 
 .gradle
+/build
