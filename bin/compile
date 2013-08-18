@@ -26,6 +26,8 @@ install_java ${BUILD_DIR} ${javaVersion}
 jdk_overlay ${BUILD_DIR}
 echo "done"
 
+export PATH=$JAVA_HOME/bin:$PATH
+
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
 cd $BUILD_DIR
