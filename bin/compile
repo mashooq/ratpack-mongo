@@ -8,9 +8,6 @@ set -e
 JAVA_DIST="openjdk1.7.0_21"
 JDK7_URL="https://s3.amazonaws.com/heroku-jdk/${JAVA_DIST}.tar.gz"
 
-#create the cache dir if it doesn't exist
-mkdir -p $CACHE_DIR
-
 #jdk7
 if [ -d .jdk7 ]; then
   echo "-----> .jdk7 folder found, moving along."
