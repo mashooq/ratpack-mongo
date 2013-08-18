@@ -1,4 +1,4 @@
----
+web: ./gradlew run
 addons:
 config_vars:
     JAVA_HOME: ${BUILD_DIR}/.jdk7
