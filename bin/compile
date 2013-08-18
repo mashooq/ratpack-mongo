@@ -10,39 +10,26 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-#env variables
-JAVA_DIST="openjdk1.7.0_21"
-JDK7_URL="https://s3.amazonaws.com/heroku-jdk/${JAVA_DIST}.tar.gz"
+
+curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
+. bin/java
+
+# create default system.properties 
+if [ ! -f ${BUILD_DIR}/system.properties ]; then
+  echo "java.runtime.version=1.7" > ${BUILD_DIR}/system.properties
+fi
+
+# install JDK 
+javaVersion=$(detect_java_version ${BUILD_DIR})
+echo -n "-----> Installing OpenJDK ${javaVersion}... "
+install_java ${BUILD_DIR} ${javaVersion}
+jdk_overlay ${BUILD_DIR}
+echo "done"
 
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
 
-cd "$BUILD_DIR"
-
-#jdk7
-if [ -d .jdk7 ]; then
-  echo "-----> .jdk7 folder found, moving along."
-
-else
-  echo -n "-----> .jdk7 folder not found! "
-  if [[ -d "$CACHE_DIR/.jdk7" ]]; then
-    echo -n "Copying jdk from cache to app... "
-    cp -r "$CACHE_DIR/.jdk7" "$BUILD_DIR"
-    echo "Done!"
-
-  else
-    echo -n "-----> Installing ${JAVA_DIST} build (to .jdk7)....."
-    mkdir "$BUILD_DIR/.jdk7"
-    cd "$BUILD_DIR/.jdk7"
-    curl --max-time 180 --location "$JDK7_URL" | tar xz
-    cd "$BUILD_DIR"
-    cp -r "$BUILD_DIR/.jdk7" "$CACHE_DIR/.jdk7"
-    echo "Done!"
-  fi
-fi
-
 cd $BUILD_DIR
-
 export JAVA_HOME="$BUILD_DIR/.jdk7"
 export PATH="$JAVA_HOME/bin:$PATH"
 
