@@ -17,6 +17,7 @@ else
   mkdir ".jdk7"
   cd ".jdk7"
   curl --max-time 180 --location "$JDK7_URL" | tar xz
+  cd ..
   echo "Done!"
 fi
 
@@ -28,7 +29,5 @@ echo "-----> Building project with Gradle wrapper:"
 echo "       ./gradlew clean installApp"
 export GRADLE_OPTS="-Dfile.encoding=UTF-8 -server -Xmx512m -XX:+UseCompressedOops"
 export GRADLE_USER_HOME="$CACHE_DIR/.gradle"
-
-cd ..
 
 ./gradlew clean installApp
