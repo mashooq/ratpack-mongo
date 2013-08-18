@@ -5,12 +5,6 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-reports*
-target*
-.classpath
-.settings
-.project
-
 # IntelliJ IDEA files #
 #######################
 *.iml
@@ -18,5 +12,5 @@ target*
 
 # Gradle Files
 # ####################
-.gradle
 /build
+/.gradle
