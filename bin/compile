@@ -11,11 +11,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 
-#env variables
-JAVA_DIST="openjdk1.7.0_21"
-JDK7_URL="https://s3.amazonaws.com/heroku-jdk/${JAVA_DIST}.tar.gz"
-
-curl --silent --location $JDK7_URL | tar xz
+curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
 . bin/java
 
 # create default system.properties 
