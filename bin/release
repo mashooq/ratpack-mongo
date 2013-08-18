@@ -2,13 +2,12 @@
 # bin/release <build-dir>
 
 BUILD_DIR=$1
-CACHE_DIR=$2
 
 cat <<EOF
 ---
 addons:
 config_vars:
-  JAVA_HOME: ${CACHE_DIR}/.jdk7
+  JAVA_HOME: ${BUILD_DIR}/.jdk7
   JAVA_OPTS: -Xmx384m -Xss512k -XX:+UseCompressedOops
 default_process_types:
   web: build/install/ratpack/bin/ratpack
