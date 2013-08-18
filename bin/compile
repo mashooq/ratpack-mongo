@@ -4,12 +4,6 @@
 # fail fast
 set -e
 
-BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
-
-# parse args
-BUILD_DIR=$1
-CACHE_DIR=$2
-
 #env variables
 JAVA_DIST="openjdk1.7.0_21"
 JDK7_URL="https://s3.amazonaws.com/heroku-jdk/${JAVA_DIST}.tar.gz"
@@ -22,11 +16,14 @@ if [ -d .jdk7 ]; then
   echo "-----> .jdk7 folder found, moving along."
 else
   echo "-----> .jdk7 folder not found!"
+  echo -n "-----> Installing ${JAVA_DIST} build (to .jdk7)....."
+  mkdir ".jdk7"
+  cd ".jdk7"
+  curl --max-time 180 --location "$JDK7_URL" | tar xz
+  echo "Done!"
 fi
 
-cd $BUILD_DIR
-
-export JAVA_HOME="$BUILD_DIR/.jdk7"
+export JAVA_HOME=".jdk7"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 echo ""
