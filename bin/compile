@@ -29,4 +29,6 @@ echo "       ./gradlew clean installApp"
 export GRADLE_OPTS="-Dfile.encoding=UTF-8 -server -Xmx512m -XX:+UseCompressedOops"
 export GRADLE_USER_HOME="$CACHE_DIR/.gradle"
 
+cd ..
+
 ./gradlew clean installApp
