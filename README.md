@@ -16,6 +16,7 @@ Review the following files if you are interested in the custom build pack for Ra
 
 ```
 bin/compile, bin/detect, bin/release
+.profile.d/setenv.sh
 Profile
 system.properties
 ```
