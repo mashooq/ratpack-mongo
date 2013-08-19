@@ -7,6 +7,8 @@ cat <<EOF
 ---
 config_vars:
   JAVA_OPTS: -Xmx384m -Xss512k -XX:+UseCompressedOops
+default_process_types:
+  web: build/install/ratpack/bin/ratpack
 
 
 EOF
