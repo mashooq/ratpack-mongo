@@ -1,48 +1,19 @@
-Ratpack project template
------------------------------
+Ratpack project template with Heroku build-pack (including Mongo DB Integration)
+--------------------------------------------------------------------------------
 
-You have just created a basic Groovy Ratpack application. It doesn't do much
-at this point, but we have set you up with a standard project structure, a
-simple home page, and Spock for writing tests (because you'd be mad not to
-use it).
+The project structure follows the Lazybones template.
+To run use ./gradlew run
+To deploy to Heroku
 
-In this project you get:
+Use: 
+'''
+heroku apps:create myapplication --buildpack http://github.com/kr/heroku-buildpack-inline.git
+heroku config:add PATH="/app/.jdk/bin:/usr/local/bin:/usr/bin:/bin"
+git push heroku master
+'''
 
-* A Gradle build file with pre-built Gradle wrapper
-* A tiny home page at src/ratpack/templates/index.html (it's a template)
-* A routing file at src/ratpack/ratpack.groovy
-* Reloading enabled in build.gradle
-* A standard project structure:
+Review the following files if you are interested in the custom build pack for Ratpack - inspired by Marco Vermulan's post of this subject:
 
-    <proj>
-      |
-      +- src
-          |
-          +- ratpack
-          |     |
-          |     +- ratpack.groovy
-          |     +- config.groovy
-          |     +- public          // Static assets in here
-          |          |
-          |          +- images
-          |          +- lib
-          |          +- scripts
-          |          +- styles
-          |
-          +- main
-          |   |
-          |   +- groovy
-                   |
-                   +- // App classes in here!
-          |
-          +- test
-              |
-              +- groovy
-                   |
-                   +- // Spock tests in here!
-
-That's it! You can start the basic app with
-
-    ./gradlew run
-
-but it's up to you to add the bells, whistles, and meat of the application.
+bin/compile, bin/detect, bin/release
+Profile
+system.properties
