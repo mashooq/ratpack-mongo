@@ -9,8 +9,11 @@ Thumbs.db
 #######################
 *.iml
 .idea
+*.ipr
+*.iws
 
 # Gradle Files
 # ####################
 /build
 /.gradle
+/classes
